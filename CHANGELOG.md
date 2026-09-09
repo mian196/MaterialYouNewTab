@@ -23,6 +23,9 @@ and this project partially follows [Semantic Versioning](https://semver.org/spec
 - Added a "Download Wallpaper" button that downloads the original high-resolution Unsplash image after resolving the wallpaper's source metadata
 - Added a sleek glassmorphic attribution pill at the bottom-right corner (next to the menu button) referencing the photographer and linking to the source Unsplash page of the active random wallpaper
 - Added localized hover tooltips to settings control buttons (Random Wallpaper, Clear Wallpaper, and Download Wallpaper)
+- Added keyboard shortcuts (`Alt + 1`–`9`) to quickly open the first nine shortcuts ([@smurf11k](https://github.com/smurf11k)) ([#237](https://github.com/prem-k-r/MaterialYouNewTab/pull/237))
+- Added Google AI Mode search button to the search bar when using Google as the search engine ([@KomeshBathula](https://github.com/KomeshBathula))
+- Updated the search bar to bypass search engines and navigate directly to webpages when the input contains no spaces and begins strictly with `http://`, `https://`, or `www.` ([@prem-k-r](https://github.com/prem-k-r)) ([#255](https://github.com/prem-k-r/MaterialYouNewTab/pull/255))
 
 ### Improved
 
@@ -40,13 +43,14 @@ and this project partially follows [Semantic Versioning](https://semver.org/spec
 - Fixed an issue where rapid clicks on the AI Tools icon caused race conditions, leading to inconsistent shortcuts panel visibility. ([@prem-k-r](https://github.com/prem-k-r)) ([#118](https://github.com/prem-k-r/MaterialYouNewTab/pull/118))
 - Fixed shortcut name and URLs hover behavior by replacing ellipsis with clipped text for improved readability ([@prem-k-r](https://github.com/prem-k-r)) ([283f78d](https://github.com/prem-k-r/MaterialYouNewTab/pull/199/changes/283f78d6e4b202a075ca3d670c1b30cbc701c3a4))
 - Fixed wallpaper disappearing on load due to blob URL being revoked too early ([@prem-k-r](https://github.com/prem-k-r)) ([#209](https://github.com/prem-k-r/MaterialYouNewTab/pull/209))
+- Fixed the page briefly flashing blue (FOUC) when opening a new tab by applying saved themes before the page renders ([@itz-rj-here](https://github.com/itz-rj-here)) ([#238](https://github.com/prem-k-r/MaterialYouNewTab/pull/238))
 
 ### Localized
 
 - Translation updated for:
   - Japanese ([@kons10](https://github.com/kons10))
   - Arabic ([@heshamoomar](https://github.com/heshamoomar))
-  - Spanish ([@palacios22c](https://github.com/palacios22c))
+  - Spanish ([@palacios22c](https://github.com/palacios22c)), ([@deeferentleeg](https://github.com/deeferentleeg))
   - Russian ([@C0dwiz](https://github.com/C0dwiz), [@giwih](https://github.com/giwih)), ([@smurf11k](https://github.com/smurf11k))
   - Czech ([@ceskyDJ](https://github.com/ceskyDJ))
   - Hindi ([@prem-k-r](https://github.com/prem-k-r))
@@ -58,6 +62,9 @@ and this project partially follows [Semantic Versioning](https://semver.org/spec
   - Marathi ([@anndiy](https://github.com/anndiy))
   - French ([@iamwinner422](https://github.com/iamwinner422))
   - Urdu ([@mian196](https://github.com/mian196))
+  - French ([@iamwinner422](https://github.com/iamwinner422)), ([@deeferentleeg](https://github.com/deeferentleeg))
+  - Simplified Chinese ([@HdShare](https://github.com/HdShare))
+  - Traditional Chinese ([@Eddie40802](https://github.com/Eddie40802))
 - Corrected abbreviations for months and days of the week in Russian ([@Ayyas-RF](https://github.com/Ayyas-RF)) ([#105](https://github.com/prem-k-r/MaterialYouNewTab/pull/105))
 - Added support for Ukrainian ([@lozik4](https://github.com/lozik4)) ([#106](https://github.com/prem-k-r/MaterialYouNewTab/pull/106))
 - Added support for Swedish ([@empohello-imamempogitub](https://github.com/empohello-imamempogitub)) ([#179](https://github.com/prem-k-r/MaterialYouNewTab/pull/179))
@@ -66,6 +73,7 @@ and this project partially follows [Semantic Versioning](https://semver.org/spec
 ### Other
 
 - Miscellaneous improvements ([@prem-k-r](https://github.com/prem-k-r))
+- Docs: Fixed broken star history chart link in README ([@FaintFlower](https://github.com/FaintFlower)) ([#248](https://github.com/prem-k-r/MaterialYouNewTab/pull/248))
 
 ## [v3.3](https://github.com/prem-k-r/MaterialYouNewTab/compare/v3.2...v3.3) - Nov 23, 2025
 

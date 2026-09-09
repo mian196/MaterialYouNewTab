@@ -222,7 +222,7 @@ For a step-by-step walkthrough, watch this [installation guide video](https://yo
 | <img src='https://flagcdn.com/sa.svg' width=20> &nbsp; **Arabic** - العربية                     | ar-SA | [Mazen](https://github.com/Mazen3Alharbi)                                             |
 | <img src='https://flagcdn.com/az.svg' width=20> &nbsp; **Azerbaijani** - Azərbaycanca        |  az   | [Hasan Bakhtiar](https://github.com/hasanbakhtiar/)                                   |
 | <img src='https://flagcdn.com/bd.svg' width=20> &nbsp; **Bangla** - বাংলা                     |  bn   | [It'z RJ](https://github.com/itz-rj-here/), [Prem](https://github.com/prem-k-r/)      |
-| <img src='https://flagcdn.com/cn.svg' width=20> &nbsp; **Chinese** (Simplified) - 简体中文    | zh-CN | [Guy Berryman](https://github.com/Guy-Berryman), [Tianli](https://github.com/TIANLI0), [Konsento](http://github.com/kons10) |
+| <img src='https://flagcdn.com/cn.svg' width=20> &nbsp; **Chinese** (Simplified) - 简体中文    | zh-CN | [Guy Berryman](https://github.com/Guy-Berryman), [Tianli](https://github.com/TIANLI0), [Konsento](http://github.com/kons10), [HdShare](https://github.com/HdShare) |
 | <img src='https://flagcdn.com/tw.svg' width=20> &nbsp; **Chinese** (Traditional) - 繁體中文   | zh-TW | [C. Y. Tseng](https://github.com/Eddie40802)                                          |
 | <img src='https://flagcdn.com/cz.svg' width=20> &nbsp; **Czech** - Čeština                   |  cz   | [Michal Šmahel](https://github.com/ceskyDJ/)                                          |
 | <img src='https://flagcdn.com/fr.svg' width=20> &nbsp; **French** - Français                 |  fr   | [422.io](https://github.com/iamwinner422)                                             |
@@ -242,7 +242,7 @@ For a step-by-step walkthrough, watch this [installation guide video](https://yo
 | <img src='https://flagcdn.com/ru.svg' width=20> &nbsp; **Russian** - Русский                 |  ru   | [giwi](https://github.com/giwih/), [CodWiz](https://github.com/C0dwiz/)               |
 | <img src='https://flagcdn.com/si.svg' width=20> &nbsp; **Slovenian** - Slovenščina           | sl-SI | [Linux-Alex](https://github.com/Linux-Alex/)                                          |
 | <img src='https://flagcdn.com/es.svg' width=20> &nbsp; **Spanish** - Español                 | es-ES | [XengShi](https://github.com/XengShi/), [Isaac Vergara](https://github.com/zRaidev), [Saúl Palacios](https://github.com/palacios22c)  |
-| <img src='https://flagcdn.com/sv.svg' width=20> &nbsp; **Swedish** - Svenska                 | sv | [HELLOEMPO](https://github.com/empohello-imamempogitub/)                                 |
+| <img src='https://flagcdn.com/se.svg' width=20> &nbsp; **Swedish** - Svenska                 | sv | [HELLOEMPO](https://github.com/empohello-imamempogitub/)                                 |
 | <img src='https://flagcdn.com/in.svg' width=20> &nbsp; **Tamil** - தமிழ்                 | ta | [தமிழ்நேரம்](https://TamilNeram.github.io/)                                                |
 | <img src='https://flagcdn.com/th.svg' width=20> &nbsp; **Thai** - ภาษาไทย                 | th | [Prin](https://github.com/prinsasina)                                                |
 | <img src='https://flagcdn.com/tr.svg' width=20> &nbsp; **Turkish** - Türkçe                  |  tr   | [Nobody](https://github.com/Nobody9512), [Kerim Ölçer](https://github.com/kerimlcr)   |
@@ -270,12 +270,12 @@ Contributions are welcome! If you’d like to contribute:
 
 Here is the star history chart for the **MYNT: Material You New Tab** repository. It shows the growth of stars over time, reflecting the increasing interest and support for the project.
 
-<a href="https://star-history.com/#prem-k-r/MaterialYouNewTab&Date">
- <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=prem-k-r/MaterialYouNewTab&type=Date&theme=dark" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=prem-k-r/MaterialYouNewTab&type=Date" />
-   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=prem-k-r/MaterialYouNewTab&type=Date" />
- </picture>
+<a href="https://star-history.dera.page/#prem-k-r/MaterialYouNewTab&type=Date">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://star-history.dera.page/svg?repos=prem-k-r/MaterialYouNewTab&type=Date&theme=dark" />
+    <source media="(prefers-color-scheme: light)" srcset="https://star-history.dera.page/svg?repos=prem-k-r/MaterialYouNewTab&type=Date" />
+    <img alt="Star History Chart" src="https://star-history.dera.page/svg?repos=prem-k-r/MaterialYouNewTab&type=Date" />
+  </picture>
 </a>
 
 ## ❓ Issues and Support
