@@ -173,7 +173,7 @@ const en = {
     "systemThemed": "System",
 
     // Wallpaper and settings
-    "uploadWallpaperText": "Upload Wallpaper",    // Keep this short
+    "uploadWallpaperText": "Upload",    // Keep this short
     "downloadWallpaperText": "Download Wallpaper",
     "randomWallpaperText": "Random Wallpaper",
     "clearWallpaperText": "Clear Wallpaper",

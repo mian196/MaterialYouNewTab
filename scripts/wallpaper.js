@@ -114,9 +114,31 @@ document.getElementById("imageUpload").addEventListener("change", function (even
     }
 });
 
-// Fetch and apply random image as background
-const RANDOM_IMAGE_URL = "https://picsum.photos/1920/1080";
+// Helper to get wallpaper fetch configuration based on quality and source
+function getRandomImageFetchConfig() {
+    const quality = localStorage.getItem("wallpaperQuality") || "1080p";
+    const source = localStorage.getItem("wallpaperSource") || "picsum";
 
+    const dimensions = {
+        "720p": { width: 1280, height: 720, bingRes: "1366" },
+        "1080p": { width: 1920, height: 1080, bingRes: "1920" },
+        "original": { width: 3840, height: 2160, bingRes: "3840" }
+    }[quality] || { width: 1920, height: 1080, bingRes: "1920" };
+
+    if (source === "bing") {
+        return {
+            url: `https://bing.biturl.top/?resolution=${dimensions.bingRes}&format=image`,
+            source: "bing"
+        };
+    } else {
+        return {
+            url: `https://picsum.photos/${dimensions.width}/${dimensions.height}`,
+            source: source
+        };
+    }
+}
+
+// Fetch and apply random image as background
 async function applyRandomImage(showConfirmation = true) {
     if (showConfirmation && !(await confirmPrompt(
         translations[currentLanguage]?.confirmWallpaper || translations["en"].confirmWallpaper
@@ -124,20 +146,29 @@ async function applyRandomImage(showConfirmation = true) {
         return;
     }
     try {
-        const response = await fetch(RANDOM_IMAGE_URL);
+        const config = getRandomImageFetchConfig();
+        const response = await fetch(config.url);
         const blob = await response.blob();
 
         let infoData = null;
-        try {
-            const redirectedUrl = response.url;
-            const match = redirectedUrl.match(/\/id\/(\d+)\//);
-            if (match) {
-                const photoId = match[1];
-                const infoResponse = await fetch(`https://picsum.photos/id/${photoId}/info`);
-                infoData = await infoResponse.json();
+        if (config.source === "bing") {
+            infoData = {
+                author: "Bing Daily Wallpaper",
+                url: "https://www.bing.com",
+                isBing: true
+            };
+        } else {
+            try {
+                const redirectedUrl = response.url;
+                const match = redirectedUrl.match(/\/id\/(\d+)\//);
+                if (match) {
+                    const photoId = match[1];
+                    const infoResponse = await fetch(`https://picsum.photos/id/${photoId}/info`);
+                    infoData = await infoResponse.json();
+                }
+            } catch (infoError) {
+                console.error("Error fetching wallpaper metadata:", infoError);
             }
-        } catch (infoError) {
-            console.error("Error fetching wallpaper metadata:", infoError);
         }
 
         await saveImageToIndexedDB(blob, true, infoData);
@@ -157,6 +188,11 @@ function updateBackgroundType(bgType) {
     if (downloadBtn) {
         downloadBtn.setAttribute("aria-disabled", bgType === "random" ? "false" : "true");
     }
+
+    const randomToggle = document.getElementById("randomWallpaperToggle");
+    if (randomToggle) {
+        randomToggle.checked = localStorage.getItem("autoDailyWallpaper") !== "false";
+    }
 }
 
 // Helper function to validate Unsplash URLs
@@ -175,14 +211,20 @@ function updateWallpaperSourceUI(infoData) {
     const sourceContainer = document.getElementById("wallpaperSource");
     if (!sourceContainer) return;
 
-    if (infoData && infoData.author && isValidUnsplashUrl(infoData.url)) {
+    const showAttribution = localStorage.getItem("showWallpaperAttribution") === "true";
+    const attributionCheckbox = document.getElementById("showAttributionCheckbox");
+    if (attributionCheckbox) {
+        attributionCheckbox.checked = showAttribution;
+    }
+
+    if (showAttribution && infoData && infoData.author) {
         const prefixElement = document.getElementById("wallpaperSourcePrefix");
         const linkElement = document.getElementById("wallpaperSourceLink");
         const photoByText = translations[currentLanguage]?.photoBy || translations["en"].photoBy || "Photo by";
 
-        prefixElement.textContent = `${photoByText} `;
+        prefixElement.textContent = infoData.isBing ? "" : `${photoByText} `;
         linkElement.textContent = infoData.author;
-        linkElement.href = infoData.url;
+        linkElement.href = infoData.url || "#";
         sourceContainer.style.display = "block";
     } else {
         sourceContainer.style.display = "none";
@@ -208,7 +250,8 @@ function checkAndUpdateImage() {
                 return;
             }
 
-            if (lastUpdate.toDateString() !== now.toDateString()) {
+            const autoDaily = localStorage.getItem("autoDailyWallpaper") !== "false";
+            if (autoDaily && lastUpdate.toDateString() !== now.toDateString()) {
                 applyRandomImage(false);
             } else {
                 setBackground(blob, "random");
@@ -257,6 +300,49 @@ document.getElementById("clearImage").addEventListener("click", async function (
 });
 
 document.getElementById("randomImageTrigger").addEventListener("click", applyRandomImage);
+
+// Random Wallpaper Daily Auto-Fetch Toggle switch listener
+const randomToggle = document.getElementById("randomWallpaperToggle");
+if (randomToggle) {
+    randomToggle.checked = localStorage.getItem("autoDailyWallpaper") !== "false";
+    randomToggle.addEventListener("change", (e) => {
+        localStorage.setItem("autoDailyWallpaper", e.target.checked ? "true" : "false");
+    });
+}
+
+// Attribution Toggle switch listener
+const attributionCheckbox = document.getElementById("showAttributionCheckbox");
+if (attributionCheckbox) {
+    attributionCheckbox.checked = localStorage.getItem("showWallpaperAttribution") === "true";
+    attributionCheckbox.addEventListener("change", async (e) => {
+        localStorage.setItem("showWallpaperAttribution", e.target.checked ? "true" : "false");
+        try {
+            const [blob, savedTimestamp, imageType, infoData] = await loadImageAndDetails();
+            if (imageType === "random") {
+                updateWallpaperSourceUI(infoData);
+            }
+        } catch (error) {
+            console.error("Error updating attribution:", error);
+        }
+    });
+}
+
+// Quality and Source Select persistence
+const qualitySelect = document.getElementById("wallpaperQuality");
+if (qualitySelect) {
+    qualitySelect.value = localStorage.getItem("wallpaperQuality") || "1080p";
+    qualitySelect.addEventListener("change", (e) => {
+        localStorage.setItem("wallpaperQuality", e.target.value);
+    });
+}
+
+const sourceSelect = document.getElementById("wallpaperSourceSelect");
+if (sourceSelect) {
+    sourceSelect.value = localStorage.getItem("wallpaperSource") || "picsum";
+    sourceSelect.addEventListener("change", (e) => {
+        localStorage.setItem("wallpaperSource", e.target.value);
+    });
+}
 
 // Function to download the current background image
 async function downloadWallpaper() {
